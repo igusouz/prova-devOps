@@ -26,4 +26,3 @@ root.render(
   </StrictMode>
 );
 
-//comitando para pode atualizar o commit do github
