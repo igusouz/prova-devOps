@@ -1,20 +1,21 @@
 version: '3'
+
 services:
   frontend:
-    image: projeto_front
+    image: frontend
     networks:
       - app-network
     environment:
-      - BACKEND_URL=http://backend:3000  # Porta do seu back-end
+      - BACKEND_URL=http://backend:3000
     ports:
-      - "3001:3000"  # Mapeia a porta 3000 do container para a porta 3001 no host
+      - "3001:3000"
 
   backend:
-    image: projeto_back
+    image: backend
     networks:
       - app-network
     ports:
-      - "3000:3000"  # Mapeia a porta 3000 do container para a porta 3000 no host
+      - "3000:3000"
 
 networks:
   app-network:
