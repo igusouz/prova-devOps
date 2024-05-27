@@ -10,10 +10,10 @@ jobs:
 
         steps:
             - name: Checkout the files 
-              uses: actions/checkout@v4
+              uses: actions/checkout@v3
 
             - name: Copy files with SSH
-              uses: easingthemes/ssh-deploy@staging 
+              uses: easingthemes/ssh-deploy@v3
               env:
                 SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }} 
                 ARGS: "-rltgoDzvO --delete"
