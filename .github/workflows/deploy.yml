@@ -24,4 +24,3 @@ jobs:
           TARGET: "/home/ec2-user"
           EXCLUDE: "/dist/, /node_modules/, **.env, rebuild_app.sh, watcher.sh"
 
-          
