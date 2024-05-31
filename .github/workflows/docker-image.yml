@@ -19,8 +19,8 @@ jobs:
 
       - name: Build Docker images
         run: |
-          docker build -t lucas8610/front:latest -f front/Dockerfile front
-          docker build -t lucas8610/back:latest -f back/Dockerfile back
+          docker build -t lucas8610/front:latest 
+          docker build -t lucas8610/back:latest 
 
       - name: Push Docker images
         run: |
