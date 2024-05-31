@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Exponha a porta que a aplicação do frontend usará
-EXPOSE 3001
+EXPOSE 80
 
 # Comando para rodar a aplicação
 CMD ["npm", "start"]
