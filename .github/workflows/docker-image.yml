@@ -1,4 +1,4 @@
-name: Docker front CI
+name: Docker front CI deploy
 
 on:
   push:
