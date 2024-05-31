@@ -1,4 +1,4 @@
-name: Docker front and back CI deploy
+name: Docker front CI deploy
 
 on:
   push:
@@ -18,15 +18,12 @@ jobs:
         run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 
       - name: Build front Docker image
-        run: |
-          docker build -t front -f projeto-front/Dockerfile .
-          docker images # Adiciona este comando para listar as imagens disponíveis localmente
+        run: docker build -t front -f projeto-front/Dockerfile .
+         
 
       - name: Push front to Dockerhub
         run: docker push lucas8610/front:latest
 
-      - name: Build back Docker image
-        run: docker build -t back -f projeto-back/Dockerfile .
+      
 
-      - name: Push back to Dockerhub
-        run: docker push lucas8610/back:latest
+    
