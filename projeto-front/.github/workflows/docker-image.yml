@@ -11,13 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check if Dockerfile exists
-        run: |
-          if [ ! -f ./Dockerfile ]; then
-            echo "Dockerfile not found!"
-            exit 1
-          fi
-
+      
       - name: Login to Docker Hub
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
