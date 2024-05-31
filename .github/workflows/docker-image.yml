@@ -19,8 +19,14 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
 
-      - name: Build the Docker image
+      - name: Build the Front Docker image
         run: docker build -t lucas8610/front:latest -f projeto-front/Dockerfile .
 
-      - name: Push to Dockerhub
+      - name: Push the Front image to Dockerhub
+        run: docker push lucas8610/front:latest
+
+      - name: Build the Back Docker image
+        run: docker build -t lucas8610/front:latest -f projeto-back/Dockerfile .
+
+      - name: Push the Back image to Dockerhub
         run: docker push lucas8610/front:latest
