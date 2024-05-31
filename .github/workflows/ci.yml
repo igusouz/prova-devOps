@@ -19,7 +19,7 @@ jobs:
         run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 
       - name: Build Docker images
-        run: docker build -t front -f /projeto-front/Dockerfile .
+        run: docker build -t front -f projeto-front/Dockerfile .
 
       - name: Push Dockerhub
         run: docker push lucas8610/front:latest
