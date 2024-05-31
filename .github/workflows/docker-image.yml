@@ -19,6 +19,6 @@ jobs:
 
       - name: Build the Docker images
         run: docker build -t front .
+
       - name: Push to Dockerhub
         run: docker push lucas8610/front:latest
-           
