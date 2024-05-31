@@ -20,9 +20,9 @@ jobs:
       - name: Build Docker images
         run: |
           docker build -t lucas8610/front .
-          docker build -t lucas8610/back .
+         
 
       - name: Push Docker images
         run: |
-          docker push lucas8610/devops-prova:latest
+          docker push lucas8610/front:latest
            
