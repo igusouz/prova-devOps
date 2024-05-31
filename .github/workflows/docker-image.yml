@@ -23,7 +23,7 @@ jobs:
       run: docker build -t front . docker build -t back .
       
     - name: Push to Dockerhub 
-      run: docker push lucas8610/front:latest docker push lucas8610/back:latest    
+      run: docker push lucas8610/devops-prova:latest  
     
     
       
