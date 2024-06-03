@@ -26,7 +26,7 @@ jobs:
         run: docker push lucas8610/front:latest
 
       - name: Build the Back Docker image
-        run: docker build -t lucas8610/front:latest -f projeto-back/Dockerfile .
+        run: docker build -t lucas8610/back:latest -f projeto-back/Dockerfile .
 
       - name: Push the Back image to Dockerhub
-        run: docker push lucas8610/front:latest
+        run: docker push lucas8610/back:latest
