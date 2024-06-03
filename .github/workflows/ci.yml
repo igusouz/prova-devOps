@@ -20,13 +20,13 @@ jobs:
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
 
       - name: Build the Front Docker image
-        run: docker build -t lucas8610/front:latest -f projeto-front/Dockerfile .
+        run: docker build -t lucas8610/app:front-latest -f projeto-front/Dockerfile .
 
       - name: Push the Front image to Dockerhub
-        run: docker push lucas8610/front:latest
+        run: docker push lucas8610/app:front-latest
 
       - name: Build the Back Docker image
-        run: docker build -t lucas8610/back:latest -f projeto-back/Dockerfile .
+        run: docker build -t lucas8610/app:back-latest -f projeto-back/Dockerfile .
 
       - name: Push the Back image to Dockerhub
-        run: docker push lucas8610/back:latest
+        run: docker push lucas8610/app:back-latest
