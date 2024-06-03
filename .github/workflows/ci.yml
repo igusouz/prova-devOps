@@ -1,15 +1,12 @@
-name: CI deploy
+name: CI Pipeline
 
 on:
   push:
     branches: [ "staging" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       
