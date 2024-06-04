@@ -11,9 +11,7 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Debug info
-        run: echo "CD Pipeline triggered successfully"
-      
+        
       - name: Pull Frontend Docker image
         run: sudo docker pull lucas8610/app:front-latest || true
     
