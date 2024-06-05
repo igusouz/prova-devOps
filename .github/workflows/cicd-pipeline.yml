@@ -47,7 +47,7 @@ jobs:
           echo "${{ secrets.EC2_SSH_KEY }}" > /tmp/id_rsa
           chmod 600 /tmp/id_rsa
 
-      - name: SSH and deploy to EC2 (Backend)
+      - name: SSH and deploy to EC2 (Back)
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -60,7 +60,7 @@ jobs:
             docker rm backend || true
             docker run -d --name backend -p 3001:3001 ${{ secrets.DOCKER_USERNAME }}/app:back-latest
 
-      - name: SSH and deploy to EC2 (Frontend)
+      - name: SSH and deploy to EC2 (Front)
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
