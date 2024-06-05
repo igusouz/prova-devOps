@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI Pipeline Devops
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
 
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - name: Login Dockerhub
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
