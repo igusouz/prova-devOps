@@ -8,7 +8,7 @@ async function getPets(){
         const response = await petsApi.get('/');
         return response.data;
     } catch (error) {
-        console.error("Erro ao buscar dados na API ", error);
+        console.error("Erro ao buscar dados na API em backend ", error);
     }
 }
 
