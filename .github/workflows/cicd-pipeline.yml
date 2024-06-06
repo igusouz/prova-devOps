@@ -1,9 +1,9 @@
-name: Deploy to AWS EC2 1
+name: Deploy to AWS EC2 2
 
 on:
   push:
     branches:
-      - staging
+      - development
 
 jobs:
   build-and-deploy:
