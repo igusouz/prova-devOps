@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const petsApi = axios.create({baseURL: "http://localhost:3000/pets"});
+const petsApi = axios.create({baseURL: "http://18.226.34.50:3000/pets"});
 
 async function getPets(){
     try {
