@@ -58,7 +58,7 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/app:back-latest
             docker stop backend || true
             docker rm backend || true
-            docker run -d --name backend -p 3001:3001 ${{ secrets.DOCKER_USERNAME }}/app:back-latest
+            docker run -d --name backend -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/app:back-latest
 
       - name: SSH and deploy to EC2 (Front)
         uses: appleboy/ssh-action@master
@@ -71,4 +71,4 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/app:front-latest
             docker stop frontend || true
             docker rm frontend || true
-            docker run -d --name frontend -p 80:80 ${{ secrets.DOCKER_USERNAME }}/app:front-latest
+            docker run -d --name frontend -p 3001:3001 ${{ secrets.DOCKER_USERNAME }}/app:front-latest
