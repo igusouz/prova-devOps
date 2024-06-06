@@ -20,23 +20,39 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push Docker images
+      - name: Build and push backend Docker image
         run: |
           cd projeto-back
-          docker-compose build
-          docker-compose push
+          docker build -t $DOCKER_USERNAME/app:back-latest .
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+          docker push $DOCKER_USERNAME/app:back-latest
+
+      - name: Build and push frontend Docker image
+        run: |
+          cd projeto-front
+          docker build -t $DOCKER_USERNAME/app:front-latest .
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+          docker push $DOCKER_USERNAME/app:front-latest
 
       - name: Add SSH key
         run: |
           echo "${{ secrets.EC2_SSH_KEY }}" > /tmp/id_rsa
           chmod 600 /tmp/id_rsa
 
-      - name: SSH and deploy to EC2
+      - name: SSH and deploy to EC2 (Back)
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key_path: /tmp/id_rsa
           script: |
-            docker-compose pull
-            docker-compose up -d
+            ssh -i /tmp/id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} 'docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} && docker pull ${{ secrets.DOCKER_USERNAME }}/app:back-latest && docker stop backend || true && docker rm backend || true && docker run -d --name backend -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/app:back-latest'
+
+      - name: SSH and deploy to EC2 (Front)
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key_path: /tmp/id_rsa
+          script: |
+            ssh -i /tmp/id_rsa ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} 'docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} && docker pull ${{ secrets.DOCKER_USERNAME }}/app:front-latest && docker stop frontend || true && docker rm frontend || true && docker run -d --name frontend -p 80:3000 ${{ secrets.DOCKER_USERNAME }}/app:front-latest'
