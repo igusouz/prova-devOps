@@ -1,4 +1,4 @@
-name: Deploy na AWS EC2 DevOps tentativa 4
+name: Deploy na AWS EC2 DevOps tentativa 5
 
 on:
   push:
