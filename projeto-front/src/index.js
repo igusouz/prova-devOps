@@ -9,6 +9,7 @@ import Admin from "./rotas/Admin";
 import Cadastro from "./rotas/Cadastro"
 
 
+
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
@@ -21,6 +22,7 @@ root.render(
         <Route path="/Home" element={<Home />} />
         <Route path="/Pets" element={<Pets />} />
         <Route path="/Cadastro" element={<Cadastro/>} />
+        
       </Routes>
     </BrowserRouter>
   </StrictMode>
