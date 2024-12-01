@@ -50,8 +50,7 @@ function Header() {
         </Opcoes>
         
         <br />
-      <h1>Bem-vindo ao AdotaEu  </h1>
-      <h2>O Lar Perfeito para Seu Novo Amigo!</h2>
+      <h1>TESTE PROVA </h1>
       <br />
       <p>
       Estamos emocionados em recebê-lo em nosso espaço dedicado a conectar 
