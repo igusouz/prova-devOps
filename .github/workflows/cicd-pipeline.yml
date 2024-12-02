@@ -1,4 +1,4 @@
-name: Deploy to AWS EC2 teste 6
+name: Deploy to AWS EC2 teste 7
 
 on:
   push:
