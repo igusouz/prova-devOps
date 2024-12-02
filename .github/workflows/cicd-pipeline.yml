@@ -1,4 +1,4 @@
-name: Deploy na AWS EC2 DevOps teste1
+name: Deploy to AWS EC2 1
 
 on:
   push:
@@ -31,7 +31,6 @@ jobs:
           docker build -t $DOCKER_USERNAME/app:back-latest .
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
           docker push $DOCKER_USERNAME/app:back-latest
-
       - name: Build and push frontend Docker image
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -41,12 +40,10 @@ jobs:
           docker build -t $DOCKER_USERNAME/app:front-latest .
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
           docker push $DOCKER_USERNAME/app:front-latest
-
       - name: Add SSH key
         run: |
           echo "${{ secrets.EC2_SSH_KEY }}" > /tmp/id_rsa
           chmod 600 /tmp/id_rsa
-
       - name: SSH and deploy to EC2 (Back)
         uses: appleboy/ssh-action@master
         with:
@@ -59,7 +56,6 @@ jobs:
             docker stop backend || true
             docker rm backend || true
             docker run -d --name backend -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/app:back-latest
-
       - name: SSH and deploy to EC2 (Front)
         uses: appleboy/ssh-action@master
         with:
