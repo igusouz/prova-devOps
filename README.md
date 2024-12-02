@@ -1,5 +1,5 @@
 <h1>PROVA DEOVPS</h1>
 
-ALUNOS: Ígor Souza e Lucas Luciano
+ALUNOS: Jadson e Myllena
 
 TRABALHO DEVOPS
