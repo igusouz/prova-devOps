@@ -1,4 +1,4 @@
-name: Deploy to AWS EC2 teste 7
+name: Deploy to AWS EC2 jadson
 
 on:
   push:
@@ -31,6 +31,7 @@ jobs:
           docker build -t $DOCKER_USERNAME/app:back-latest .
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
           docker push $DOCKER_USERNAME/app:back-latest
+
       - name: Build and push frontend Docker image
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -40,11 +41,13 @@ jobs:
           docker build -t $DOCKER_USERNAME/app:front-latest .
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
           docker push $DOCKER_USERNAME/app:front-latest
+
       - name: Add SSH key
         run: |
-          echo "${{ secrets.EC2_SSH_KEY }}" > /tmp/id_rsa
+          echo "${{ secrets.EC2_SSH_KEY }}" > /tmp/id_rsa 
           chmod 600 /tmp/id_rsa
-      - name: SSH and deploy to EC2 (Back)
+
+      - name: SSH and deploy to EC2
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -52,18 +55,14 @@ jobs:
           key_path: /tmp/id_rsa
           script: |
             docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+            # Backend deployment
             docker pull ${{ secrets.DOCKER_USERNAME }}/app:back-latest
             docker stop backend || true
             docker rm backend || true
             docker run -d --name backend -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/app:back-latest
-      - name: SSH and deploy to EC2 (Front)
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key_path: /tmp/id_rsa
-          script: |
-            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+            # Frontend deployment
             docker pull ${{ secrets.DOCKER_USERNAME }}/app:front-latest
             docker stop frontend || true
             docker rm frontend || true
